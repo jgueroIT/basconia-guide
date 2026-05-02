@@ -5,18 +5,18 @@
 <title>QR Cards — Basconia Smart Studio</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  @page { size: A4; margin: 5mm; }
+  @page { size: A4 landscape; margin: 5mm; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     font-family: 'Inter', system-ui, sans-serif;
-    font-size: 13px;
+    font-size: 15px;
     color: #2c2c2c;
     background: white;
   }
   .card {
-    width: 210mm;
-    max-height: 148mm;
-    padding: 8mm;
+    width: 297mm;
+    max-height: 210mm;
+    padding: 12mm;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -29,7 +29,7 @@
   }
   .title {
     font-family: 'Playfair Display', serif;
-    font-size: 18px;
+    font-size: 22px;
     color: #c9a96e;
     letter-spacing: 1.5px;
     text-align: center;
@@ -45,12 +45,12 @@
     border-radius: 10px;
     width: 100%;
   }
-  .row-main img { width: 80px; height: 80px; border-radius: 6px; }
+  .row-main img { width: 100px; height: 100px; border-radius: 6px; }
   .row-main .text { flex: 1; }
-  .row-main .text h2 { font-size: 16px; color: #1a1a2e; margin-bottom: 3px; }
-  .row-main .text p { font-size: 13px; color: #4a4a4a; }
-  .row-main .text .required { color: #b5451b; font-weight: 700; font-size: 14px; }
-  .row-main .text .es { color: #8a8578; font-style: italic; font-size: 12px; }
+  .row-main .text h2 { font-size: 20px; color: #1a1a2e; margin-bottom: 4px; }
+  .row-main .text p { font-size: 15px; color: #4a4a4a; }
+  .row-main .text .required { color: #b5451b; font-weight: 700; font-size: 16px; }
+  .row-main .text .es { color: #8a8578; font-style: italic; font-size: 14px; }
 
   /* Row 2: Wifi + Guide */
   .row-secondary {
@@ -68,11 +68,11 @@
     border: 1.5px solid #e8e4dc;
     border-radius: 8px;
   }
-  .qr-block img { width: 60px; height: 60px; border-radius: 5px; }
-  .qr-block .text h3 { font-size: 14px; color: #1a1a2e; margin-bottom: 2px; }
-  .qr-block .text p { font-size: 12px; color: #4a4a4a; }
-  .qr-block .text .es { color: #8a8578; font-style: italic; font-size: 11px; }
-  .qr-block .text .pass { font-family: monospace; font-size: 13px; font-weight: 600; color: #1a1a2e; }
+  .qr-block img { width: 80px; height: 80px; border-radius: 5px; }
+  .qr-block .text h3 { font-size: 17px; color: #1a1a2e; margin-bottom: 3px; }
+  .qr-block .text p { font-size: 14px; color: #4a4a4a; }
+  .qr-block .text .es { color: #8a8578; font-style: italic; font-size: 13px; }
+  .qr-block .text .pass { font-family: monospace; font-size: 15px; font-weight: 600; color: #1a1a2e; }
 </style>
 </head>
 <body>
