@@ -9,7 +9,7 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     font-family: 'Inter', system-ui, sans-serif;
-    font-size: 12px;
+    font-size: 13px;
     line-height: 1.35;
     color: #2c2c2c;
     background: white;
@@ -84,11 +84,11 @@
     border: 1px solid #e8e4dc;
     transition: all 0.2s;
   }
-  .cmd-item .en { font-weight: 600; color: #1a1a2e; font-size: 11px; }
-  .cmd-item .es { color: #8a8578; font-style: italic; font-size: 9.5px; }
+  .cmd-item .en { font-weight: 600; color: #1a1a2e; font-size: 12px; }
+  .cmd-item .es { color: #8a8578; font-style: italic; font-size: 10.5px; }
 
   /* Routine table */
-  .routine-table { width: 100%; border-collapse: collapse; font-size: 10px; }
+  .routine-table { width: 100%; border-collapse: collapse; font-size: 11px; }
   .routine-table th {
     background: linear-gradient(135deg, #1a1a2e, #16213e);
     color: #c9a96e;
@@ -109,14 +109,14 @@
     font-family: 'Inter', monospace;
     font-weight: 600;
     color: #1a1a2e;
-    font-size: 9.5px;
+    font-size: 10.5px;
   }
   .routine-table .trigger-alt {
     font-family: 'Inter', monospace;
     color: #8a8578;
-    font-size: 8.5px;
+    font-size: 9px;
   }
-  .routine-table .action { font-size: 9px; color: #4a4a4a; }
+  .routine-table .action { font-size: 10px; color: #4a4a4a; }
 
   /* Tip box */
   .tip-box {
@@ -126,7 +126,7 @@
     border-radius: 6px;
     padding: 5px 9px;
     margin-top: 2mm;
-    font-size: 9.5px;
+    font-size: 10.5px;
   }
   .tip-box strong { color: #8b6914; }
 
@@ -138,8 +138,8 @@
     padding: 5px 9px;
     margin-top: 2mm;
   }
-  .manual-box p { font-size: 10px; color: #333; margin-bottom: 2px; }
-  .manual-box .es-note { font-size: 9px; color: #8a8578; font-style: italic; }
+  .manual-box p { font-size: 11px; color: #333; margin-bottom: 2px; }
+  .manual-box .es-note { font-size: 10px; color: #8a8578; font-style: italic; }
 
   /* Subsections */
   .subsection { margin-top: 3mm; margin-bottom: 2mm; }
@@ -175,7 +175,7 @@
   .rules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2mm 3mm; }
   .rule-item {
     display: flex; align-items: center; gap: 5px;
-    font-size: 9.5px; padding: 2px 0;
+    font-size: 10.5px; padding: 2px 0;
   }
   .rule-item .rule-icon { font-size: 13px; }
   .rule-item .rule-text span { display: block; }
@@ -195,15 +195,15 @@
   }
   .highlight-box .hl-icon { font-size: 28px; }
   .highlight-box .hl-content { flex: 1; }
-  .highlight-box .hl-title { font-size: 10.5px; font-weight: 600; color: #1a1a2e; }
-  .highlight-box .hl-desc { font-size: 9.5px; color: #333; margin-top: 2px; }
-  .highlight-box .hl-es { font-size: 9px; color: #8a8578; font-style: italic; }
+  .highlight-box .hl-title { font-size: 11px; font-weight: 600; color: #1a1a2e; }
+  .highlight-box .hl-desc { font-size: 10.5px; color: #333; margin-top: 2px; }
+  .highlight-box .hl-es { font-size: 9.5px; color: #8a8578; font-style: italic; }
 
   /* Equipment */
   .equip-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2mm 3mm; }
   .equip-item {
     display: flex; align-items: center; gap: 4px;
-    font-size: 9.5px; padding: 2px 4px;
+    font-size: 10.5px; padding: 3px 5px;
     background: #fafaf8; border-radius: 4px; border: 1px solid #e8e4dc;
   }
   .equip-item .eq-icon { font-size: 12px; }
@@ -346,16 +346,12 @@
           <td class="action">Turns off all lights, lowers blinds, TV off<br><em style="color:#8a8578;">Apaga todas las luces, baja persianas, apaga TV</em></td>
         </tr>
         <tr>
-          <td><span class="trigger">"I'm leaving"</span><br><span class="trigger-alt">"Me voy" · "Me marcho"</span></td>
+          <td><span class="trigger">"I'm leaving" · "Everything off" · "Turn off everything"</span><br><span class="trigger-alt">"Me voy" · "Me marcho" · "Apaga todo"</span></td>
           <td class="action">Everything off (lights, TV, AC), blinds down<br><em style="color:#8a8578;">Apaga todo, baja persianas</em></td>
         </tr>
         <tr>
           <td><span class="trigger">"I'm home" · "I am at home"</span><br><span class="trigger-alt">"Estoy en casa" · "Ya he llegado"</span></td>
           <td class="action">Raises blinds, turns on entrance & lamp<br><em style="color:#8a8578;">Sube persianas, enciende entrada y lámpara</em></td>
-        </tr>
-        <tr>
-          <td><span class="trigger">"Everything off" · "Turn off everything"</span><br><span class="trigger-alt">"Apaga todo"</span></td>
-          <td class="action">Everything off (lights, TV, AC), blinds down<br><em style="color:#8a8578;">Apaga todo, baja persianas</em></td>
         </tr>
         <tr>
           <td><span class="trigger">"Cinema mode"</span><br><span class="trigger-alt">"Modo cine"</span></td>
@@ -381,9 +377,7 @@
     </table>
   </div>
 
-  <div class="footer">
-    Basconia Smart Studio · Pje. Aralar, Málaga · VUT/MA/97131
-  </div>
+
 </div>
 
 <!-- ==================== SIDE B ==================== -->
