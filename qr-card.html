@@ -9,7 +9,8 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     font-family: 'Inter', system-ui, sans-serif;
-    font-size: 15px;
+    font-size: 17px;
+    line-height: 1.5;
     color: #2c2c2c;
     background: white;
   }
@@ -21,74 +22,65 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 6mm;
+    gap: 8mm;
     background: white;
-    background-image:
-      radial-gradient(circle at 0% 0%, rgba(201,169,110,0.03) 0%, transparent 50%),
-      radial-gradient(circle at 100% 100%, rgba(201,169,110,0.03) 0%, transparent 50%);
   }
   .title {
     font-family: 'Playfair Display', serif;
-    font-size: 22px;
+    font-size: 26px;
     color: #c9a96e;
     letter-spacing: 1.5px;
     text-align: center;
   }
-  /* Row 1: Registration (big) */
   .row-main {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 5mm;
-    padding: 3mm 5mm;
+    gap: 6mm;
+    padding: 5mm 8mm;
     background: #fafaf8;
-    border: 2px solid #c9a96e;
+    border: 2.5px solid #c9a96e;
     border-radius: 10px;
-    width: auto;
   }
   .row-main img { width: 160px; height: 160px; border-radius: 6px; }
-  .row-main .text { flex: 1; }
-  .row-main .text h2 { font-size: 20px; color: #1a1a2e; margin-bottom: 4px; }
-  .row-main .text p { font-size: 15px; color: #4a4a4a; }
-  .row-main .text .required { color: #b5451b; font-weight: 700; font-size: 16px; }
-  .row-main .text .es { color: #8a8578; font-style: italic; font-size: 14px; }
-
-  /* Row 2: Wifi + Guide */
+  .row-main .text h2 { font-size: 24px; color: #1a1a2e; margin-bottom: 4px; }
+  .row-main .text p { font-size: 17px; color: #2c2c2c; margin-bottom: 3px; }
+  .row-main .text .es { color: #4a5568; font-style: italic; font-size: 16px; font-weight: 500; }
   .row-secondary {
     display: flex;
-    gap: 5mm;
+    gap: 6mm;
   }
   .qr-block {
     display: flex;
     align-items: center;
-    gap: 4mm;
-    padding: 2mm 4mm;
+    gap: 5mm;
+    padding: 4mm 6mm;
     background: #fafaf8;
-    border: 1.5px solid #e8e4dc;
+    border: 2px solid #c4bfb5;
     border-radius: 8px;
   }
   .qr-block img { width: 130px; height: 130px; border-radius: 5px; }
-  .qr-block .text h3 { font-size: 17px; color: #1a1a2e; margin-bottom: 3px; }
-  .qr-block .text p { font-size: 14px; color: #4a4a4a; }
-  .qr-block .text .es { color: #8a8578; font-style: italic; font-size: 13px; }
-  .qr-block .text .pass { font-family: monospace; font-size: 15px; font-weight: 600; color: #1a1a2e; }
+  .qr-block .text h3 { font-size: 20px; color: #1a1a2e; margin-bottom: 3px; }
+  .qr-block .text p { font-size: 16px; color: #2c2c2c; margin-bottom: 2px; }
+  .qr-block .text .es { color: #4a5568; font-style: italic; font-size: 15px; font-weight: 500; }
+  .qr-block .text .pass { font-family: monospace; font-size: 18px; font-weight: 600; color: #1a1a2e; }
 </style>
 </head>
 <body>
 <div class="card">
   <div class="title">🏠 Basconia Smart Studio</div>
 
-  <!-- REGISTRATION (main, big) -->
+  <!-- REGISTRATION -->
   <div class="row-main">
     <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://u.partee.es/27404434/Y4fMSRrusXq09nL" />
     <div class="text">
-      <h2>📋 Guest Registration</h2>
+      <h2>📋 Guest Registration · Registro de huéspedes</h2>
       <p>Scan to register. <strong style="color:#b5451b;">⚠️ Required by Spanish law.</strong></p>
       <p class="es">Escanea para registrarte. <strong style="color:#b5451b;">Obligatorio por ley.</strong></p>
     </div>
   </div>
 
-  <!-- WIFI + GUIDE (secondary row) -->
+  <!-- WIFI + GUIDE -->
   <div class="row-secondary">
     <div class="qr-block">
       <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=WIFI:T:WPA;S:PILAMA-5G;P:PILAMA1999;;" />
@@ -96,15 +88,15 @@
         <h3>📶 Wifi</h3>
         <p><strong>PILAMA-5G</strong></p>
         <p class="pass">PILAMA1999</p>
-        <p class="es">Escanea para conectarte</p>
+        <p>Scan to connect · <span class="es">Escanea para conectarte</span></p>
       </div>
     </div>
     <div class="qr-block">
       <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://jgueroit.github.io/basconia-guide/" />
       <div class="text">
-        <h3>📱 Smart Home Guide</h3>
+        <h3>📱 Smart Home Guide · Guía Domótica</h3>
         <p>Full guide online</p>
-        <p class="es">Guía domótica completa</p>
+        <p class="es">Guía completa online</p>
       </div>
     </div>
   </div>
