@@ -2,34 +2,38 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Basconia Smart Studio — Smart Home Guide</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏠</text></svg>">
+<title>Smart Home Guide — Basconia Smart Studio</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
+  @page { size: A4; margin: 10mm 12mm; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     font-family: 'Inter', system-ui, sans-serif;
-    font-size: 16px;
-    line-height: 1.6;
+    font-size: 13px;
+    line-height: 1.45;
     color: #2c2c2c;
-    background: #f5f3ef;
-    padding: 0;
-  }
-  .container {
-    max-width: 720px;
-    margin: 0 auto;
     background: white;
-    min-height: 100vh;
-    padding: 30px 35px 50px;
-    box-shadow: 0 0 60px rgba(0,0,0,0.08);
   }
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    padding: 10mm 12mm;
+    page-break-after: always;
+    position: relative;
+    background: white;
+    background-image:
+      radial-gradient(circle at 0% 0%, rgba(201,169,110,0.03) 0%, transparent 50%),
+      radial-gradient(circle at 100% 100%, rgba(201,169,110,0.03) 0%, transparent 50%);
+  }
+  .page:last-child { page-break-after: auto; }
+
+  /* Header premium */
   .header {
     text-align: center;
-    margin-bottom: 30px;
-    padding: 25px 20px;
+    margin-bottom: 5mm;
+    padding: 4mm 0;
     background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-    border-radius: 12px;
+    border-radius: 8px;
     position: relative;
     overflow: hidden;
   }
@@ -39,157 +43,208 @@
     top: 0; left: 0; right: 0; bottom: 0;
     background: repeating-linear-gradient(
       45deg, transparent, transparent 20px,
-      rgba(201,169,110,0.04) 20px, rgba(201,169,110,0.04) 21px
+      rgba(201,169,110,0.03) 20px, rgba(201,169,110,0.03) 21px
     );
   }
   .header h1 {
     font-family: 'Playfair Display', serif;
-    font-size: 28px;
+    font-size: 22px;
     color: #c9a96e;
     letter-spacing: 2px;
     position: relative;
   }
   .header .subtitle {
-    font-size: 14px;
+    font-size: 11px;
     color: rgba(255,255,255,0.7);
-    margin-top: 4px;
+    margin-top: 2px;
     letter-spacing: 0.5px;
     position: relative;
   }
-  .section { margin-bottom: 28px; }
+
+  /* Sections */
+  .section { margin-bottom: 4.5mm; }
   .section-title {
-    font-size: 18px;
+    font-size: 13px;
     font-weight: 600;
     color: #1a1a2e;
-    border-left: 4px solid #c9a96e;
-    padding-left: 12px;
-    margin-bottom: 14px;
+    border-left: 3px solid #c9a96e;
+    padding-left: 8px;
+    margin-bottom: 2.5mm;
+    display: flex;
+    align-items: center;
+    gap: 5px;
     letter-spacing: 0.3px;
   }
-  .cmd-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  @media (max-width: 600px) { .cmd-grid { grid-template-columns: 1fr; } }
+
+  /* Command cards */
+  .cmd-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2mm 3mm; }
   .cmd-item {
     background: #fafaf8;
-    border-radius: 8px;
-    padding: 10px 14px;
+    border-radius: 6px;
+    padding: 4px 9px;
     border: 1px solid #e8e4dc;
+    transition: all 0.2s;
   }
-  .cmd-item .en { font-weight: 600; color: #1a1a2e; font-size: 15px; }
-  .cmd-item .es { color: #8a8578; font-style: italic; font-size: 13px; margin-top: 2px; }
-  .routine-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .cmd-item .en { font-weight: 600; color: #1a1a2e; font-size: 12.5px; }
+  .cmd-item .es { color: #8a8578; font-style: italic; font-size: 11px; }
+
+  /* Routine table */
+  .routine-table { width: 100%; border-collapse: collapse; font-size: 11.5px; }
   .routine-table th {
     background: linear-gradient(135deg, #1a1a2e, #16213e);
     color: #c9a96e;
-    padding: 8px 12px;
+    padding: 4px 6px;
     text-align: left;
-    font-size: 12px;
+    font-size: 9.5px;
     text-transform: uppercase;
     letter-spacing: 0.8px;
     font-weight: 500;
   }
-  .routine-table td { padding: 8px 12px; border-bottom: 1px solid #ede9e3; vertical-align: top; }
+  .routine-table td {
+    padding: 3px 6px;
+    border-bottom: 1px solid #ede9e3;
+    vertical-align: top;
+  }
   .routine-table tr:nth-child(even) { background: #fafaf8; }
-  .routine-table .trigger { font-weight: 600; color: #1a1a2e; font-size: 14px; }
-  .routine-table .trigger-alt { color: #8a8578; font-size: 12.5px; }
-  .routine-table .action { font-size: 13px; color: #4a4a4a; }
+  .routine-table .trigger {
+    font-family: 'Inter', monospace;
+    font-weight: 600;
+    color: #1a1a2e;
+    font-size: 11px;
+  }
+  .routine-table .trigger-alt {
+    font-family: 'Inter', monospace;
+    color: #8a8578;
+    font-size: 10px;
+  }
+  .routine-table .action { font-size: 10.5px; color: #4a4a4a; }
+
+  /* Tip box */
   .tip-box {
     background: linear-gradient(135deg, #fdf8f0 0%, #f9f3e8 100%);
     border: 1px solid #e8dcc8;
-    border-left: 4px solid #c9a96e;
-    border-radius: 8px;
-    padding: 12px 16px;
-    margin-top: 12px;
-    font-size: 14px;
+    border-left: 3px solid #c9a96e;
+    border-radius: 6px;
+    padding: 5px 9px;
+    margin-top: 2mm;
+    font-size: 11px;
   }
   .tip-box strong { color: #8b6914; }
+
+  /* Manual/info box */
   .manual-box {
     background: #f8f9fa;
     border: 1px solid #e8e4dc;
-    border-radius: 8px;
-    padding: 12px 16px;
-    margin-top: 10px;
+    border-radius: 6px;
+    padding: 5px 9px;
+    margin-top: 2mm;
   }
-  .manual-box p { font-size: 14px; color: #333; margin-bottom: 4px; }
-  .manual-box .es-note { font-size: 13px; color: #8a8578; font-style: italic; }
-  .subsection { margin-top: 18px; margin-bottom: 12px; }
+  .manual-box p { font-size: 11.5px; color: #333; margin-bottom: 2px; }
+  .manual-box .es-note { font-size: 10.5px; color: #8a8578; font-style: italic; }
+
+  /* Subsections */
+  .subsection { margin-top: 3mm; margin-bottom: 2mm; }
   .subsection-title {
-    font-size: 15px;
+    font-size: 11.5px;
     font-weight: 600;
     color: #4a4a4a;
-    margin-bottom: 10px;
-    padding-left: 8px;
-    border-left: 3px solid #c9a96e;
+    margin-bottom: 2mm;
+    padding-left: 4px;
+    border-left: 2px solid #c9a96e;
   }
-  hr.divider { border: none; border-top: 1px solid #e8e4dc; margin: 24px 0; }
-  .rules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  @media (max-width: 600px) { .rules-grid { grid-template-columns: 1fr; } }
-  .rule-item { display: flex; align-items: center; gap: 8px; font-size: 14px; padding: 4px 0; }
-  .rule-item .rule-icon { font-size: 18px; }
+
+  /* Footer */
+  .footer {
+    position: absolute;
+    bottom: 10mm;
+    left: 12mm;
+    right: 12mm;
+    text-align: center;
+    font-size: 8px;
+    color: #b8b0a4;
+    border-top: 1px solid #e8e4dc;
+    padding-top: 2mm;
+    letter-spacing: 0.5px;
+  }
+
+  /* Divider */
+  hr.divider {
+    border: none;
+    border-top: 1px solid #e8e4dc;
+    margin: 3.5mm 0;
+    position: relative;
+  }
+
+  /* Rules */
+  .rules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2mm 3mm; }
+  .rule-item {
+    display: flex; align-items: center; gap: 5px;
+    font-size: 10.5px; padding: 2px 0;
+  }
+  .rule-item .rule-icon { font-size: 13px; }
   .rule-item .rule-text span { display: block; }
-  .rule-item .rule-es { color: #8a8578; font-style: italic; font-size: 12.5px; }
+  .rule-item .rule-es { color: #8a8578; font-style: italic; font-size: 9.5px; }
+
+  /* Highlight box */
   .highlight-box {
     background: linear-gradient(135deg, #f8f9fa 0%, #f0ede8 100%);
-    border: 2px solid #c9a96e;
-    border-radius: 12px;
-    padding: 14px 16px;
-    margin-bottom: 24px;
+    border: 1.5px solid #c9a96e;
+    border-radius: 8px;
+    padding: 7px 10px;
+    margin-bottom: 4mm;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
   }
-  .highlight-box .hl-icon { font-size: 36px; }
+  .highlight-box .hl-icon { font-size: 28px; }
   .highlight-box .hl-content { flex: 1; }
-  .highlight-box .hl-title { font-size: 15px; font-weight: 600; color: #1a1a2e; }
-  .highlight-box .hl-desc { font-size: 14px; color: #333; margin-top: 4px; }
-  .highlight-box .hl-es { font-size: 13px; color: #8a8578; font-style: italic; }
-  .equip-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
-  @media (max-width: 600px) { .equip-grid { grid-template-columns: 1fr 1fr; } }
+  .highlight-box .hl-title { font-size: 11.5px; font-weight: 600; color: #1a1a2e; }
+  .highlight-box .hl-desc { font-size: 10.5px; color: #333; margin-top: 2px; }
+  .highlight-box .hl-es { font-size: 9.5px; color: #8a8578; font-style: italic; }
+
+  /* Equipment */
+  .equip-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2mm 3mm; }
   .equip-item {
-    display: flex; align-items: center; gap: 6px;
-    font-size: 13.5px; padding: 8px 10px;
-    background: #fafaf8; border-radius: 6px; border: 1px solid #e8e4dc;
+    display: flex; align-items: center; gap: 4px;
+    font-size: 10.5px; padding: 3px 5px;
+    background: #fafaf8; border-radius: 4px; border: 1px solid #e8e4dc;
   }
-  .equip-item .eq-icon { font-size: 16px; }
+  .equip-item .eq-icon { font-size: 12px; }
+
+  /* Intro note */
   .intro-note {
     background: linear-gradient(135deg, #f8f9fa, #f0ede8);
     border: 1px solid #e8e4dc;
-    border-radius: 8px;
-    padding: 10px 14px;
-    margin-bottom: 24px;
-    font-size: 14px;
+    border-radius: 6px;
+    padding: 4px 9px;
+    margin-bottom: 4mm;
+    font-size: 10.5px;
     text-align: center;
     color: #4a4a4a;
   }
+
+  /* QR section */
   .qr-section {
-    margin-top: 24px;
+    margin-top: 4mm;
     display: flex;
     align-items: center;
-    gap: 16px;
-    padding: 14px 16px;
+    gap: 4mm;
+    padding: 6px 10px;
     background: #fafaf8;
-    border: 2px solid #c9a96e;
-    border-radius: 10px;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    border: 1.5px solid #c9a96e;
+    border-radius: 6px;
   }
-  .qr-block { display: flex; align-items: center; gap: 10px; }
-  .qr-block img { width: 65px; height: 65px; border-radius: 6px; }
-  .qr-block .qr-text { font-size: 13px; }
-  .qr-block .qr-text strong { color: #1a1a2e; font-size: 14px; }
-  .footer-online {
-    text-align: center;
-    margin-top: 30px;
-    padding-top: 16px;
-    border-top: 1px solid #e8e4dc;
-    font-size: 12px;
-    color: #b8b0a4;
-    letter-spacing: 0.5px;
+
+  @media print {
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .page { padding: 0; min-height: auto; }
   }
 </style>
 </head>
 <body>
-<div class="container">
 
+<!-- ==================== SIDE A ==================== -->
+<div class="page">
   <div class="header">
     <h1>🏠 Basconia Smart Studio</h1>
     <div class="subtitle">Smart Home Guide · Guía Domótica</div>
@@ -235,6 +290,7 @@
   <!-- TV & BLINDS -->
   <div class="section">
     <div class="section-title">📺 TV & 🪟 Blinds · Persianas</div>
+
     <div class="subsection">
       <div class="subsection-title">🗣️ Voice control · Control por voz</div>
       <div class="cmd-grid">
@@ -263,6 +319,7 @@
         <strong>🪟</strong> 0 = closed · 50 = half · 100 = open
       </div>
     </div>
+
     <div class="subsection">
       <div class="subsection-title">🎛️ Motorized blinds manual control · Control manual persianas motorizadas</div>
       <div class="manual-box">
@@ -329,11 +386,26 @@
     </table>
   </div>
 
-  <hr class="divider">
+  <div class="footer">
+    <div style="display:flex; align-items:center; justify-content:center; gap:3mm; margin-bottom:1mm;">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=40x40&data=https://jgueroit.github.io/basconia-guide/" style="width:35px; height:35px; border-radius:3px;" />
+      <span style="font-size:8.5px; color:#8a8578;">Digital version · Versión digital</span>
+    </div>
+    Basconia Smart Studio · Pje. Aralar, Málaga · VUT/MA/97131
+  </div>
+</div>
+
+<!-- ==================== SIDE B ==================== -->
+<div class="page">
+  <div class="header">
+    <h1>🏠 Basconia Smart Studio</h1>
+    <div class="subtitle">Smart Home Guide · Guía Domótica</div>
+  </div>
 
   <!-- AIR CONDITIONING -->
   <div class="section">
     <div class="section-title">❄️ Air Conditioning · Aire Acondicionado</div>
+
     <div class="subsection">
       <div class="subsection-title">🗣️ Voice control · Control por voz</div>
       <div class="cmd-grid">
@@ -359,14 +431,27 @@
         <span style="color:#8a8578; font-style:italic;">"Daikin" es la marca del aire. Modo AUTO: enfría o calienta automáticamente según la temperatura que elijas.</span>
       </div>
     </div>
-    <div class="subsection">
+
+    <div class="subsection" style="margin-top: 3mm;">
       <div class="subsection-title">🎛️ A/C Manual control · Wall panel (right of TV)</div>
       <div class="manual-box">
-        <table style="width:100%; font-size:14px; border-collapse:collapse;">
-          <tr><td style="padding:4px 0; width:65px;"><strong>ON/OFF</strong></td><td>Power on/off · <em style="color:#8a8578;">Encender/apagar</em></td></tr>
-          <tr><td style="padding:4px 0;"><strong>▲ / ▼</strong></td><td>Raise/lower temperature · <em style="color:#8a8578;">Subir/bajar temperatura</em></td></tr>
-          <tr><td style="padding:4px 0;"><strong>MODE</strong></td><td>AUTO → Cool → Heat → Fan · <em style="color:#8a8578;">AUTO → Frío → Calor → Ventilador</em></td></tr>
-          <tr><td style="padding:4px 0;"><strong>FAN</strong></td><td>Speed: Auto → 1 → 2 → 3 · <em style="color:#8a8578;">Velocidad: Auto → 1 → 2 → 3</em></td></tr>
+        <table style="width:100%; font-size:10.5px; border-collapse:collapse;">
+          <tr>
+            <td style="padding:2px 0; width:55px;"><strong>ON/OFF</strong></td>
+            <td>Power on/off · <em style="color:#8a8578;">Encender/apagar</em></td>
+          </tr>
+          <tr>
+            <td style="padding:2px 0;"><strong>▲ / ▼</strong></td>
+            <td>Raise/lower temperature · <em style="color:#8a8578;">Subir/bajar temperatura</em></td>
+          </tr>
+          <tr>
+            <td style="padding:2px 0;"><strong>MODE</strong></td>
+            <td>AUTO → Cool → Heat → Fan · <em style="color:#8a8578;">AUTO → Frío → Calor → Ventilador</em></td>
+          </tr>
+          <tr>
+            <td style="padding:2px 0;"><strong>FAN</strong></td>
+            <td>Speed: Auto → 1 → 2 → 3 · <em style="color:#8a8578;">Velocidad: Auto → 1 → 2 → 3</em></td>
+          </tr>
         </table>
       </div>
       <div class="tip-box">
@@ -412,43 +497,90 @@
   <div class="section">
     <div class="section-title">📜 House Rules · Normas</div>
     <div class="rules-grid">
-      <div class="rule-item"><span class="rule-icon">🚭</span><div class="rule-text"><span>No smoking indoors</span><span class="rule-es">No fumar dentro</span></div></div>
-      <div class="rule-item"><span class="rule-icon">🎉</span><div class="rule-text"><span>No parties</span><span class="rule-es">No fiestas</span></div></div>
-      <div class="rule-item"><span class="rule-icon">🔇</span><div class="rule-text"><span>Quiet hours: 9 PM – 8 AM</span><span class="rule-es">Silencio: 21:00 – 08:00</span></div></div>
-      <div class="rule-item"><span class="rule-icon">🐾</span><div class="rule-text"><span>No pets</span><span class="rule-es">No mascotas</span></div></div>
-      <div class="rule-item"><span class="rule-icon">🚪</span><div class="rule-text"><span>Check-in: from 2 PM</span><span class="rule-es">Check-in: desde las 14:00</span></div></div>
-      <div class="rule-item"><span class="rule-icon">🧳</span><div class="rule-text"><span>Check-out: before 11 AM</span><span class="rule-es">Check-out: antes de las 11:00</span></div></div>
-      <div class="rule-item"><span class="rule-icon">🗑️</span><div class="rule-text"><span>Trash bins: under sink. Public bins: across the street.</span><span class="rule-es">Cubos: bajo el fregadero. Contenedores: cruzando la calle.</span></div></div>
-      <div class="rule-item"><span class="rule-icon">💡</span><div class="rule-text"><span>When leaving: "Alexa, I'm leaving"</span><span class="rule-es">Al salir: "Alexa, me voy"</span></div></div>
+      <div class="rule-item">
+        <span class="rule-icon">🚭</span>
+        <div class="rule-text">
+          <span>No smoking indoors</span>
+          <span class="rule-es">No fumar dentro</span>
+        </div>
+      </div>
+      <div class="rule-item">
+        <span class="rule-icon">🎉</span>
+        <div class="rule-text">
+          <span>No parties</span>
+          <span class="rule-es">No fiestas</span>
+        </div>
+      </div>
+      <div class="rule-item">
+        <span class="rule-icon">🔇</span>
+        <div class="rule-text">
+          <span>Quiet hours: 9 PM – 8 AM</span>
+          <span class="rule-es">Silencio: 21:00 – 08:00</span>
+        </div>
+      </div>
+      <div class="rule-item">
+        <span class="rule-icon">🐾</span>
+        <div class="rule-text">
+          <span>No pets</span>
+          <span class="rule-es">No mascotas</span>
+        </div>
+      </div>
+      <div class="rule-item">
+        <span class="rule-icon">🚪</span>
+        <div class="rule-text">
+          <span>Check-in: from 2 PM</span>
+          <span class="rule-es">Check-in: desde las 14:00</span>
+        </div>
+      </div>
+      <div class="rule-item">
+        <span class="rule-icon">🧳</span>
+        <div class="rule-text">
+          <span>Check-out: before 11 AM</span>
+          <span class="rule-es">Check-out: antes de las 11:00</span>
+        </div>
+      </div>
+      <div class="rule-item">
+        <span class="rule-icon">🗑️</span>
+        <div class="rule-text">
+          <span>Trash bins: under sink. Public bins: across the street.</span>
+          <span class="rule-es">Cubos: bajo el fregadero. Contenedores: cruzando la calle.</span>
+        </div>
+      </div>
+      <div class="rule-item">
+        <span class="rule-icon">💡</span>
+        <div class="rule-text">
+          <span>When leaving: "Alexa, I'm leaving"</span>
+          <span class="rule-es">Al salir: "Alexa, me voy"</span>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="tip-box" style="text-align:center; font-size:15px; border-left:none; margin-top:20px;">
+  <div class="tip-box" style="margin-top:3mm; text-align:center; font-size:11px; border-left:none;">
     <strong>🏡 Enjoy your stay! · ¡Disfruta tu estancia! 🌴</strong>
   </div>
 
   <!-- GUEST REGISTRATION + WIFI -->
-  <div class="qr-section">
-    <div class="qr-block">
-      <img src="https://api.qrserver.com/v1/create-qr-code/?size=65x65&data=https://u.partee.es/27404434/Y4fMSRrusXq09nL" />
-      <div class="qr-text">
-        <strong>📋 Guest Registration</strong><br>
+  <div class="qr-section" style="justify-content:space-between;">
+    <div style="display:flex; align-items:center; gap:3mm;">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://u.partee.es/27404434/Y4fMSRrusXq09nL" style="width:55px; height:55px; border-radius:4px;" />
+      <div style="font-size:9.5px;">
+        <strong style="color:#1a1a2e;">📋 Guest Registration</strong><br>
         <span>If you haven't already, scan to register. <strong style="color:#b5451b;">Required by law.</strong></span><br>
         <span style="color:#8a8578; font-style:italic;">Si no lo has hecho, escanea para registrarte. <strong style="color:#b5451b;">Obligatorio.</strong></span>
       </div>
     </div>
-    <div class="qr-block" style="border-left:1px solid #e8e4dc; padding-left:16px;">
-      <img src="https://api.qrserver.com/v1/create-qr-code/?size=65x65&data=WIFI:T:WPA;S:PILAMA-5G;P:pilama1999;;" />
-      <div class="qr-text">
-        <strong>📶 Wifi</strong><br>
+    <div style="display:flex; align-items:center; gap:3mm; border-left:1px solid #e8e4dc; padding-left:3mm;">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=55x55&data=WIFI:T:WPA;S:PILAMA-5G;P:pilama1999;;" style="width:55px; height:55px; border-radius:4px;" />
+      <div style="font-size:9.5px;">
+        <strong style="color:#1a1a2e;">📶 Wifi</strong><br>
         <span><strong>PILAMA-5G</strong></span><br>
         <span style="color:#8a8578;">Pass: pilama1999</span>
       </div>
     </div>
   </div>
 
-  <div class="footer-online">Basconia Smart Studio · Pje. Aralar, Málaga · VUT/MA/97131</div>
-
 </div>
+
 </body>
 </html>
