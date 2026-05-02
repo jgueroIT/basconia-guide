@@ -5,20 +5,18 @@
 <title>Smart Home Guide — Basconia Smart Studio</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  @page { size: A4; margin: 6mm 8mm; }
+  @page { size: A4; margin: 8mm; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     font-family: 'Inter', system-ui, sans-serif;
     font-size: 12px;
-    line-height: 1.4;
+    line-height: 1.35;
     color: #2c2c2c;
     background: white;
   }
   .page {
     width: 210mm;
-    min-height: 297mm;
-    padding: 6mm 8mm;
-    page-break-after: always;
+    padding: 8mm;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -27,7 +25,6 @@
       radial-gradient(circle at 0% 0%, rgba(201,169,110,0.03) 0%, transparent 50%),
       radial-gradient(circle at 100% 100%, rgba(201,169,110,0.03) 0%, transparent 50%);
   }
-  .page:last-child { page-break-after: auto; }
 
   /* Header premium */
   .header {
@@ -64,7 +61,7 @@
   }
 
   /* Sections */
-  .section { margin-bottom: 3.5mm; }
+  .section { margin-bottom: 3mm; page-break-inside: avoid; }
   .section-title {
     font-size: 13px;
     font-weight: 600;
@@ -87,11 +84,11 @@
     border: 1px solid #e8e4dc;
     transition: all 0.2s;
   }
-  .cmd-item .en { font-weight: 600; color: #1a1a2e; font-size: 11.5px; }
-  .cmd-item .es { color: #8a8578; font-style: italic; font-size: 10px; }
+  .cmd-item .en { font-weight: 600; color: #1a1a2e; font-size: 11px; }
+  .cmd-item .es { color: #8a8578; font-style: italic; font-size: 9.5px; }
 
   /* Routine table */
-  .routine-table { width: 100%; border-collapse: collapse; font-size: 10.5px; }
+  .routine-table { width: 100%; border-collapse: collapse; font-size: 10px; }
   .routine-table th {
     background: linear-gradient(135deg, #1a1a2e, #16213e);
     color: #c9a96e;
@@ -112,14 +109,14 @@
     font-family: 'Inter', monospace;
     font-weight: 600;
     color: #1a1a2e;
-    font-size: 10px;
+    font-size: 9.5px;
   }
   .routine-table .trigger-alt {
     font-family: 'Inter', monospace;
     color: #8a8578;
-    font-size: 9px;
+    font-size: 8.5px;
   }
-  .routine-table .action { font-size: 9.5px; color: #4a4a4a; }
+  .routine-table .action { font-size: 9px; color: #4a4a4a; }
 
   /* Tip box */
   .tip-box {
@@ -129,7 +126,7 @@
     border-radius: 6px;
     padding: 5px 9px;
     margin-top: 2mm;
-    font-size: 10px;
+    font-size: 9.5px;
   }
   .tip-box strong { color: #8b6914; }
 
@@ -141,8 +138,8 @@
     padding: 5px 9px;
     margin-top: 2mm;
   }
-  .manual-box p { font-size: 10.5px; color: #333; margin-bottom: 2px; }
-  .manual-box .es-note { font-size: 9.5px; color: #8a8578; font-style: italic; }
+  .manual-box p { font-size: 10px; color: #333; margin-bottom: 2px; }
+  .manual-box .es-note { font-size: 9px; color: #8a8578; font-style: italic; }
 
   /* Subsections */
   .subsection { margin-top: 3mm; margin-bottom: 2mm; }
@@ -178,7 +175,7 @@
   .rules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2mm 3mm; }
   .rule-item {
     display: flex; align-items: center; gap: 5px;
-    font-size: 10.5px; padding: 2px 0;
+    font-size: 9.5px; padding: 2px 0;
   }
   .rule-item .rule-icon { font-size: 13px; }
   .rule-item .rule-text span { display: block; }
@@ -194,18 +191,19 @@
     display: flex;
     align-items: center;
     gap: 8px;
+    page-break-inside: avoid;
   }
   .highlight-box .hl-icon { font-size: 28px; }
   .highlight-box .hl-content { flex: 1; }
-  .highlight-box .hl-title { font-size: 11.5px; font-weight: 600; color: #1a1a2e; }
-  .highlight-box .hl-desc { font-size: 10.5px; color: #333; margin-top: 2px; }
-  .highlight-box .hl-es { font-size: 9.5px; color: #8a8578; font-style: italic; }
+  .highlight-box .hl-title { font-size: 10.5px; font-weight: 600; color: #1a1a2e; }
+  .highlight-box .hl-desc { font-size: 9.5px; color: #333; margin-top: 2px; }
+  .highlight-box .hl-es { font-size: 9px; color: #8a8578; font-style: italic; }
 
   /* Equipment */
   .equip-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2mm 3mm; }
   .equip-item {
     display: flex; align-items: center; gap: 4px;
-    font-size: 10.5px; padding: 3px 5px;
+    font-size: 9.5px; padding: 2px 4px;
     background: #fafaf8; border-radius: 4px; border: 1px solid #e8e4dc;
   }
   .equip-item .eq-icon { font-size: 12px; }
@@ -232,6 +230,7 @@
     background: #fafaf8;
     border: 1.5px solid #c9a96e;
     border-radius: 6px;
+    page-break-inside: avoid;
   }
 
   @media print {
@@ -311,11 +310,8 @@
         </div>
         <div class="cmd-item">
           <div class="en">"Alexa, set persianas to 0" (blinds fully closed)</div>
-          <div class="es">"Alexa, baja persianas completas"</div>
+          <div class="es">"Alexa, baja persianas completas" · <strong style="color:#8b6914;">0=closed · 50=half · 100=open</strong></div>
         </div>
-      </div>
-      <div class="tip-box">
-        <strong>🪟</strong> 0 = closed · 50 = half · 100 = open
       </div>
     </div>
 
@@ -386,20 +382,12 @@
   </div>
 
   <div class="footer">
-    <div style="display:flex; align-items:center; justify-content:center; gap:3mm; margin-bottom:1mm;">
-      <img src="https://api.qrserver.com/v1/create-qr-code/?size=40x40&data=https://jgueroit.github.io/basconia-guide/" style="width:35px; height:35px; border-radius:3px;" />
-      <span style="font-size:8.5px; color:#8a8578;">Digital version · Versión digital</span>
-    </div>
     Basconia Smart Studio · Pje. Aralar, Málaga · VUT/MA/97131
   </div>
 </div>
 
 <!-- ==================== SIDE B ==================== -->
-<div class="page">
-  <div class="header">
-    <h1>🏠 Basconia Smart Studio</h1>
-    <div class="subtitle">Smart Home Guide · Guía Domótica</div>
-  </div>
+<div class="page" style="page-break-before: always;">
 
   <!-- AIR CONDITIONING -->
   <div class="section">
@@ -467,8 +455,8 @@
     <div class="hl-icon">🪞</div>
     <div class="hl-content">
       <div class="hl-title">Smart Mirror with Bluetooth Speaker · Espejo Digital con Altavoz Bluetooth</div>
-      <div class="hl-desc">The bathroom mirror has a built-in speaker, dimmable light and anti-fog. Press the 🎵 button on the mirror, then connect via Bluetooth from your phone.</div>
-      <div class="hl-es">El espejo del baño tiene altavoz, luz regulable y antivaho. Pulsa el botón 🎵 en el espejo y conéctate por Bluetooth desde tu móvil.</div>
+      <div class="hl-desc">Bathroom mirror with built-in speaker, dimmable light & anti-fog. Press 🎵 on the mirror, then connect via Bluetooth from your phone.</div>
+      <div class="hl-es">Espejo con altavoz, luz regulable y antivaho. Pulsa 🎵 en el espejo y conéctate por Bluetooth desde tu móvil.</div>
     </div>
   </div>
 
@@ -559,10 +547,10 @@
     <strong>🏡 Enjoy your stay! · ¡Disfruta tu estancia! 🌴</strong>
   </div>
 
-  <!-- GUEST REGISTRATION + WIFI -->
+  <!-- GUEST REGISTRATION + WIFI + GUIDE -->
   <div class="qr-section" style="justify-content:space-between;">
     <div style="display:flex; align-items:center; gap:3mm;">
-      <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://u.partee.es/27404434/Y4fMSRrusXq09nL" style="width:55px; height:55px; border-radius:4px;" />
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://u.partee.es/27404434/Y4fMSRrusXq09nL" style="width:50px; height:50px; border-radius:4px;" />
       <div style="font-size:9.5px;">
         <strong style="color:#1a1a2e;">📋 Guest Registration</strong><br>
         <span>If you haven't already, scan to register. <strong style="color:#b5451b;">Required by law.</strong></span><br>
@@ -570,11 +558,18 @@
       </div>
     </div>
     <div style="display:flex; align-items:center; gap:3mm; border-left:1px solid #e8e4dc; padding-left:3mm;">
-      <img src="https://api.qrserver.com/v1/create-qr-code/?size=55x55&data=WIFI:T:WPA;S:PILAMA-5G;P:pilama1999;;" style="width:55px; height:55px; border-radius:4px;" />
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=55x55&data=WIFI:T:WPA;S:PILAMA-5G;P:pilama1999;;" style="width:50px; height:50px; border-radius:4px;" />
       <div style="font-size:9.5px;">
         <strong style="color:#1a1a2e;">📶 Wifi</strong><br>
         <span><strong>PILAMA-5G</strong></span><br>
         <span style="color:#8a8578;">Pass: pilama1999</span>
+      </div>
+    </div>
+    <div style="display:flex; align-items:center; gap:3mm; border-left:1px solid #e8e4dc; padding-left:3mm;">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=50x50&data=https://jgueroit.github.io/basconia-guide/" style="width:50px; height:50px; border-radius:4px;" />
+      <div style="font-size:9.5px;">
+        <strong style="color:#1a1a2e;">📱 This guide online</strong><br>
+        <span style="color:#8a8578; font-style:italic;">Esta guía online</span>
       </div>
     </div>
   </div>
