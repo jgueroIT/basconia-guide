@@ -5,21 +5,23 @@
 <title>Smart Home Guide — Basconia Smart Studio</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  @page { size: A4; margin: 10mm 12mm; }
+  @page { size: A4; margin: 6mm 8mm; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     font-family: 'Inter', system-ui, sans-serif;
-    font-size: 13px;
-    line-height: 1.45;
+    font-size: 12px;
+    line-height: 1.4;
     color: #2c2c2c;
     background: white;
   }
   .page {
     width: 210mm;
     min-height: 297mm;
-    padding: 10mm 12mm;
+    padding: 6mm 8mm;
     page-break-after: always;
     position: relative;
+    display: flex;
+    flex-direction: column;
     background: white;
     background-image:
       radial-gradient(circle at 0% 0%, rgba(201,169,110,0.03) 0%, transparent 50%),
@@ -30,8 +32,8 @@
   /* Header premium */
   .header {
     text-align: center;
-    margin-bottom: 5mm;
-    padding: 4mm 0;
+    margin-bottom: 3mm;
+    padding: 3mm 0;
     background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
     border-radius: 8px;
     position: relative;
@@ -62,7 +64,7 @@
   }
 
   /* Sections */
-  .section { margin-bottom: 4.5mm; }
+  .section { margin-bottom: 3.5mm; }
   .section-title {
     font-size: 13px;
     font-weight: 600;
@@ -85,11 +87,11 @@
     border: 1px solid #e8e4dc;
     transition: all 0.2s;
   }
-  .cmd-item .en { font-weight: 600; color: #1a1a2e; font-size: 12.5px; }
-  .cmd-item .es { color: #8a8578; font-style: italic; font-size: 11px; }
+  .cmd-item .en { font-weight: 600; color: #1a1a2e; font-size: 11.5px; }
+  .cmd-item .es { color: #8a8578; font-style: italic; font-size: 10px; }
 
   /* Routine table */
-  .routine-table { width: 100%; border-collapse: collapse; font-size: 11.5px; }
+  .routine-table { width: 100%; border-collapse: collapse; font-size: 10.5px; }
   .routine-table th {
     background: linear-gradient(135deg, #1a1a2e, #16213e);
     color: #c9a96e;
@@ -110,14 +112,14 @@
     font-family: 'Inter', monospace;
     font-weight: 600;
     color: #1a1a2e;
-    font-size: 11px;
+    font-size: 10px;
   }
   .routine-table .trigger-alt {
     font-family: 'Inter', monospace;
     color: #8a8578;
-    font-size: 10px;
+    font-size: 9px;
   }
-  .routine-table .action { font-size: 10.5px; color: #4a4a4a; }
+  .routine-table .action { font-size: 9.5px; color: #4a4a4a; }
 
   /* Tip box */
   .tip-box {
@@ -127,7 +129,7 @@
     border-radius: 6px;
     padding: 5px 9px;
     margin-top: 2mm;
-    font-size: 11px;
+    font-size: 10px;
   }
   .tip-box strong { color: #8b6914; }
 
@@ -139,8 +141,8 @@
     padding: 5px 9px;
     margin-top: 2mm;
   }
-  .manual-box p { font-size: 11.5px; color: #333; margin-bottom: 2px; }
-  .manual-box .es-note { font-size: 10.5px; color: #8a8578; font-style: italic; }
+  .manual-box p { font-size: 10.5px; color: #333; margin-bottom: 2px; }
+  .manual-box .es-note { font-size: 9.5px; color: #8a8578; font-style: italic; }
 
   /* Subsections */
   .subsection { margin-top: 3mm; margin-bottom: 2mm; }
@@ -155,15 +157,12 @@
 
   /* Footer */
   .footer {
-    position: absolute;
-    bottom: 10mm;
-    left: 12mm;
-    right: 12mm;
     text-align: center;
     font-size: 8px;
     color: #b8b0a4;
     border-top: 1px solid #e8e4dc;
     padding-top: 2mm;
+    margin-top: 3mm;
     letter-spacing: 0.5px;
   }
 
@@ -171,7 +170,7 @@
   hr.divider {
     border: none;
     border-top: 1px solid #e8e4dc;
-    margin: 3.5mm 0;
+    margin: 2.5mm 0;
     position: relative;
   }
 
