@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Smart Home Guide — Basconia Smart Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  @page { size: A4; margin: 10mm 12mm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 12px;
+    line-height: 1.45;
+    color: #2c2c2c;
+    background: white;
+  }
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    padding: 10mm 12mm;
+    page-break-after: always;
+    position: relative;
+    background: white;
+    background-image:
+      radial-gradient(circle at 0% 0%, rgba(201,169,110,0.03) 0%, transparent 50%),
+      radial-gradient(circle at 100% 100%, rgba(201,169,110,0.03) 0%, transparent 50%);
+  }
+  .page:last-child { page-break-after: auto; }
+
+  /* Header premium */
+  .header {
+    text-align: center;
+    margin-bottom: 5mm;
+    padding: 4mm 0;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(
+      45deg, transparent, transparent 20px,
+      rgba(201,169,110,0.03) 20px, rgba(201,169,110,0.03) 21px
+    );
+  }
+  .header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: #c9a96e;
+    letter-spacing: 2px;
+    position: relative;
+  }
+  .header .subtitle {
+    font-size: 11px;
+    color: rgba(255,255,255,0.7);
+    margin-top: 2px;
+    letter-spacing: 0.5px;
+    position: relative;
+  }
+
+  /* Sections */
+  .section { margin-bottom: 4.5mm; }
+  .section-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1a1a2e;
+    border-left: 3px solid #c9a96e;
+    padding-left: 8px;
+    margin-bottom: 2.5mm;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    letter-spacing: 0.3px;
+  }
+
+  /* Command cards */
+  .cmd-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2mm 3mm; }
+  .cmd-item {
+    background: #fafaf8;
+    border-radius: 6px;
+    padding: 4px 9px;
+    border: 1px solid #e8e4dc;
+    transition: all 0.2s;
+  }
+  .cmd-item .en { font-weight: 600; color: #1a1a2e; font-size: 11.5px; }
+  .cmd-item .es { color: #8a8578; font-style: italic; font-size: 10px; }
+
+  /* Routine table */
+  .routine-table { width: 100%; border-collapse: collapse; font-size: 10.5px; }
+  .routine-table th {
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    color: #c9a96e;
+    padding: 4px 6px;
+    text-align: left;
+    font-size: 9.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    font-weight: 500;
+  }
+  .routine-table td {
+    padding: 3px 6px;
+    border-bottom: 1px solid #ede9e3;
+    vertical-align: top;
+  }
+  .routine-table tr:nth-child(even) { background: #fafaf8; }
+  .routine-table .trigger {
+    font-family: 'Inter', monospace;
+    font-weight: 600;
+    color: #1a1a2e;
+    font-size: 10px;
+  }
+  .routine-table .trigger-alt {
+    font-family: 'Inter', monospace;
+    color: #8a8578;
+    font-size: 9px;
+  }
+  .routine-table .action { font-size: 9.5px; color: #4a4a4a; }
+
+  /* Tip box */
+  .tip-box {
+    background: linear-gradient(135deg, #fdf8f0 0%, #f9f3e8 100%);
+    border: 1px solid #e8dcc8;
+    border-left: 3px solid #c9a96e;
+    border-radius: 6px;
+    padding: 5px 9px;
+    margin-top: 2mm;
+    font-size: 10px;
+  }
+  .tip-box strong { color: #8b6914; }
+
+  /* Manual/info box */
+  .manual-box {
+    background: #f8f9fa;
+    border: 1px solid #e8e4dc;
+    border-radius: 6px;
+    padding: 5px 9px;
+    margin-top: 2mm;
+  }
+  .manual-box p { font-size: 10.5px; color: #333; margin-bottom: 2px; }
+  .manual-box .es-note { font-size: 9.5px; color: #8a8578; font-style: italic; }
+
+  /* Subsections */
+  .subsection { margin-top: 3mm; margin-bottom: 2mm; }
+  .subsection-title {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: #4a4a4a;
+    margin-bottom: 2mm;
+    padding-left: 4px;
+    border-left: 2px solid #c9a96e;
+  }
+
+  /* Footer */
+  .footer {
+    position: absolute;
+    bottom: 10mm;
+    left: 12mm;
+    right: 12mm;
+    text-align: center;
+    font-size: 8px;
+    color: #b8b0a4;
+    border-top: 1px solid #e8e4dc;
+    padding-top: 2mm;
+    letter-spacing: 0.5px;
+  }
+
+  /* Divider */
+  hr.divider {
+    border: none;
+    border-top: 1px solid #e8e4dc;
+    margin: 3.5mm 0;
+    position: relative;
+  }
+
+  /* Rules */
+  .rules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2mm 3mm; }
+  .rule-item {
+    display: flex; align-items: center; gap: 5px;
+    font-size: 10.5px; padding: 2px 0;
+  }
+  .rule-item .rule-icon { font-size: 13px; }
+  .rule-item .rule-text span { display: block; }
+  .rule-item .rule-es { color: #8a8578; font-style: italic; font-size: 9.5px; }
+
+  /* Highlight box */
+  .highlight-box {
+    background: linear-gradient(135deg, #f8f9fa 0%, #f0ede8 100%);
+    border: 1.5px solid #c9a96e;
+    border-radius: 8px;
+    padding: 7px 10px;
+    margin-bottom: 4mm;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .highlight-box .hl-icon { font-size: 28px; }
+  .highlight-box .hl-content { flex: 1; }
+  .highlight-box .hl-title { font-size: 11.5px; font-weight: 600; color: #1a1a2e; }
+  .highlight-box .hl-desc { font-size: 10.5px; color: #333; margin-top: 2px; }
+  .highlight-box .hl-es { font-size: 9.5px; color: #8a8578; font-style: italic; }
+
+  /* Equipment */
+  .equip-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2mm 3mm; }
+  .equip-item {
+    display: flex; align-items: center; gap: 4px;
+    font-size: 10.5px; padding: 3px 5px;
+    background: #fafaf8; border-radius: 4px; border: 1px solid #e8e4dc;
+  }
+  .equip-item .eq-icon { font-size: 12px; }
+
+  /* Intro note */
+  .intro-note {
+    background: linear-gradient(135deg, #f8f9fa, #f0ede8);
+    border: 1px solid #e8e4dc;
+    border-radius: 6px;
+    padding: 4px 9px;
+    margin-bottom: 4mm;
+    font-size: 10.5px;
+    text-align: center;
+    color: #4a4a4a;
+  }
+
+  /* QR section */
+  .qr-section {
+    margin-top: 4mm;
+    display: flex;
+    align-items: center;
+    gap: 4mm;
+    padding: 6px 10px;
+    background: #fafaf8;
+    border: 1.5px solid #c9a96e;
+    border-radius: 6px;
+  }
+
+  @media print {
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .page { padding: 0; min-height: auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== SIDE A ==================== -->
+<div class="page">
+  <div class="header">
+    <h1>🏠 Basconia Smart Studio</h1>
+    <div class="subtitle">Smart Home Guide · Guía Domótica</div>
+  </div>
+
+  <div class="intro-note">
+    🔊 The Alexa speaker is on the table under the TV · <em style="color:#8a8578;">El altavoz Alexa está en la mesa bajo la TV</em>
+  </div>
+
+  <!-- LIGHTS -->
+  <div class="section">
+    <div class="section-title">💡 Lights · Luces</div>
+    <div class="cmd-grid">
+      <div class="cmd-item">
+        <div class="en">"Alexa, turn on/off entrance"</div>
+        <div class="es">"Alexa, enciende/apaga entrada"</div>
+      </div>
+      <div class="cmd-item">
+        <div class="en">"Alexa, turn on/off lamp"</div>
+        <div class="es">"Alexa, enciende/apaga lámpara"</div>
+      </div>
+      <div class="cmd-item">
+        <div class="en">"Alexa, turn on/off lights" (spotlights)</div>
+        <div class="es">"Alexa, enciende/apaga focos"</div>
+      </div>
+      <div class="cmd-item">
+        <div class="en">"Alexa, turn on/off led"</div>
+        <div class="es">"Alexa, enciende/apaga led"</div>
+      </div>
+      <div class="cmd-item">
+        <div class="en">"Alexa, turn on/off kitchen"</div>
+        <div class="es">"Alexa, enciende/apaga cocina"</div>
+      </div>
+    </div>
+    <div class="tip-box">
+      <strong>💡</strong> LED color is controlled with the touch remote located on the table under the TV — slide your finger around the wheel to adjust color, and along the bar to adjust brightness.<br>
+      <span style="color:#8a8578; font-style:italic;">El color del LED se controla con el mando táctil ubicado en la mesa bajo la TV — desliza el dedo por la rueda para ajustar color y por la barra para ajustar brillo.</span>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- TV & BLINDS -->
+  <div class="section">
+    <div class="section-title">📺 TV & 🪟 Blinds · Persianas</div>
+
+    <div class="subsection">
+      <div class="subsection-title">🗣️ Voice control · Control por voz</div>
+      <div class="cmd-grid">
+        <div class="cmd-item">
+          <div class="en">"Alexa, turn on/off tele" (TV on/off)</div>
+          <div class="es">"Alexa, enciende/apaga tele"</div>
+        </div>
+        <div class="cmd-item">
+          <div class="en">"Alexa, volume up/down on tele"</div>
+          <div class="es">"Alexa, sube/baja volumen de tele"</div>
+        </div>
+        <div class="cmd-item">
+          <div class="en">"Alexa, set persianas to 100" (blinds fully open)</div>
+          <div class="es">"Alexa, sube persianas completas"</div>
+        </div>
+        <div class="cmd-item">
+          <div class="en">"Alexa, set persianas to [0-100]" (% open)</div>
+          <div class="es">"Alexa, sube/baja persianas [0-100]" (% de apertura)</div>
+        </div>
+        <div class="cmd-item">
+          <div class="en">"Alexa, set persianas to 0" (blinds fully closed)</div>
+          <div class="es">"Alexa, baja persianas completas"</div>
+        </div>
+      </div>
+      <div class="tip-box">
+        <strong>🪟</strong> 0 = closed · 50 = half · 100 = open
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">🎛️ Motorized blinds manual control · Control manual persianas motorizadas</div>
+      <div class="manual-box">
+        <p>🪟 Use the wall switches on the left side of the window. Hold ▲ to raise, ▼ to lower. Release to stop at any position.</p>
+        <p class="es-note">🪟 Usa los interruptores en la pared, a la izquierda de la ventana. Mantén ▲ para subir, ▼ para bajar. Suelta para parar.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ROUTINES -->
+  <div class="section">
+    <div class="section-title">✨ Routines · Rutinas</div>
+    <table class="routine-table">
+      <thead>
+        <tr>
+          <th style="width:40%;">Say "Alexa..." · Di "Alexa..."</th>
+          <th style="width:60%;">What it does · Qué hace</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="trigger">"Good morning"</span><br><span class="trigger-alt">"Buenos días"</span></td>
+          <td class="action">Raises blinds, turns on entrance & kitchen lights<br><em style="color:#8a8578;">Sube persianas, enciende entrada y cocina</em></td>
+        </tr>
+        <tr>
+          <td><span class="trigger">"Good night"</span><br><span class="trigger-alt">"Buenas noches"</span></td>
+          <td class="action">Turns off all lights, lowers blinds, TV off<br><em style="color:#8a8578;">Apaga todas las luces, baja persianas, apaga TV</em></td>
+        </tr>
+        <tr>
+          <td><span class="trigger">"I'm leaving"</span><br><span class="trigger-alt">"Me voy" · "Me marcho"</span></td>
+          <td class="action">Everything off (lights, TV, AC), blinds down<br><em style="color:#8a8578;">Apaga todo, baja persianas</em></td>
+        </tr>
+        <tr>
+          <td><span class="trigger">"I'm home" · "I am at home"</span><br><span class="trigger-alt">"Estoy en casa" · "Ya he llegado"</span></td>
+          <td class="action">Raises blinds, turns on entrance & lamp<br><em style="color:#8a8578;">Sube persianas, enciende entrada y lámpara</em></td>
+        </tr>
+        <tr>
+          <td><span class="trigger">"Everything off" · "Turn off everything"</span><br><span class="trigger-alt">"Apaga todo"</span></td>
+          <td class="action">Everything off (lights, TV, AC), blinds down<br><em style="color:#8a8578;">Apaga todo, baja persianas</em></td>
+        </tr>
+        <tr>
+          <td><span class="trigger">"Cinema mode"</span><br><span class="trigger-alt">"Modo cine"</span></td>
+          <td class="action">Lights off (LED stays), TV on 🎬<br><em style="color:#8a8578;">Apaga luces (deja led), enciende TV</em></td>
+        </tr>
+        <tr>
+          <td><span class="trigger">"Relax mode" · "Relaxing mode"</span><br><span class="trigger-alt">"Modo relax"</span></td>
+          <td class="action">Only lamp + LED on, relaxing music 🧘<br><em style="color:#8a8578;">Solo lámpara + led, música relajante</em></td>
+        </tr>
+        <tr>
+          <td><span class="trigger">"Party mode"</span><br><span class="trigger-alt">"Modo fiesta"</span></td>
+          <td class="action">LED on, rest off, plays music 🎉<br><em style="color:#8a8578;">Enciende led, apaga el resto, suena música</em></td>
+        </tr>
+        <tr>
+          <td><span class="trigger">"Romantic mode"</span><br><span class="trigger-alt">"Modo romántico"</span></td>
+          <td class="action">LED only, plays music 💕<br><em style="color:#8a8578;">Solo led, suena música</em></td>
+        </tr>
+        <tr>
+          <td><span class="trigger">"Prepare studio" · "Get studio ready"</span><br><span class="trigger-alt">"Prepara estudio"</span></td>
+          <td class="action">AC to 22°, blinds up, entrance, spotlights & kitchen on<br><em style="color:#8a8578;">AC a 22°, sube persianas, enciende entrada, focos y cocina</em></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="footer">Basconia Smart Studio · Pje. Aralar, Málaga · VUT/MA/97131</div>
+</div>
+
+<!-- ==================== SIDE B ==================== -->
+<div class="page">
+  <div class="header">
+    <h1>🏠 Basconia Smart Studio</h1>
+    <div class="subtitle">Smart Home Guide · Guía Domótica</div>
+  </div>
+
+  <!-- AIR CONDITIONING -->
+  <div class="section">
+    <div class="section-title">❄️ Air Conditioning · Aire Acondicionado</div>
+
+    <div class="subsection">
+      <div class="subsection-title">🗣️ Voice control · Control por voz</div>
+      <div class="cmd-grid">
+        <div class="cmd-item">
+          <div class="en">"Alexa, turn on/off daikin" · "turn on/off AC"</div>
+          <div class="es">"Alexa, enciende/apaga daikin" · "enciende/apaga aire"</div>
+        </div>
+        <div class="cmd-item">
+          <div class="en">"Alexa, set daikin to 22 degrees" · "set AC to 22 degrees"</div>
+          <div class="es">"Alexa, pon daikin a 22 grados" · "pon aire a 22 grados"</div>
+        </div>
+        <div class="cmd-item">
+          <div class="en">"Alexa, raise the temperature 2 degrees"</div>
+          <div class="es">"Alexa, sube el aire 2 grados"</div>
+        </div>
+        <div class="cmd-item">
+          <div class="en">"Alexa, lower the temperature 2 degrees"</div>
+          <div class="es">"Alexa, baja el aire 2 grados"</div>
+        </div>
+      </div>
+      <div class="tip-box">
+        <strong>ℹ️</strong> "Daikin" is the AC brand name. AUTO mode: automatically heats or cools based on your target temperature.<br>
+        <span style="color:#8a8578; font-style:italic;">"Daikin" es la marca del aire. Modo AUTO: enfría o calienta automáticamente según la temperatura que elijas.</span>
+      </div>
+    </div>
+
+    <div class="subsection" style="margin-top: 3mm;">
+      <div class="subsection-title">🎛️ A/C Manual control · Wall panel (right of TV)</div>
+      <div class="manual-box">
+        <table style="width:100%; font-size:10.5px; border-collapse:collapse;">
+          <tr>
+            <td style="padding:2px 0; width:55px;"><strong>ON/OFF</strong></td>
+            <td>Power on/off · <em style="color:#8a8578;">Encender/apagar</em></td>
+          </tr>
+          <tr>
+            <td style="padding:2px 0;"><strong>▲ / ▼</strong></td>
+            <td>Raise/lower temperature · <em style="color:#8a8578;">Subir/bajar temperatura</em></td>
+          </tr>
+          <tr>
+            <td style="padding:2px 0;"><strong>MODE</strong></td>
+            <td>AUTO → Cool → Heat → Fan · <em style="color:#8a8578;">AUTO → Frío → Calor → Ventilador</em></td>
+          </tr>
+          <tr>
+            <td style="padding:2px 0;"><strong>FAN</strong></td>
+            <td>Speed: Auto → 1 → 2 → 3 · <em style="color:#8a8578;">Velocidad: Auto → 1 → 2 → 3</em></td>
+          </tr>
+        </table>
+      </div>
+      <div class="tip-box">
+        <strong>🌡️</strong> Recommended: summer 24-25°C, winter 20-21°C. Turn off when leaving ("Alexa, I'm leaving").<br>
+        <span style="color:#8a8578; font-style:italic;">Recomendado: verano 24-25°C, invierno 20-21°C. Apaga al salir.</span>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- SMART MIRROR -->
+  <div class="highlight-box">
+    <div class="hl-icon">🪞</div>
+    <div class="hl-content">
+      <div class="hl-title">Smart Mirror with Bluetooth Speaker · Espejo Digital con Altavoz Bluetooth</div>
+      <div class="hl-desc">The bathroom mirror has a built-in speaker, dimmable light and anti-fog. Press the 🎵 button on the mirror, then connect via Bluetooth from your phone.</div>
+      <div class="hl-es">El espejo del baño tiene altavoz, luz regulable y antivaho. Pulsa el botón 🎵 en el espejo y conéctate por Bluetooth desde tu móvil.</div>
+    </div>
+  </div>
+
+  <!-- AMENITIES -->
+  <div class="section">
+    <div class="section-title">🏡 Amenities · Equipamiento</div>
+    <div class="equip-grid">
+      <div class="equip-item"><span class="eq-icon">🍳</span> Oven · Horno</div>
+      <div class="equip-item"><span class="eq-icon">🍽️</span> Dishwasher · Lavavajillas</div>
+      <div class="equip-item"><span class="eq-icon">👕</span> Washer · Lavadora</div>
+      <div class="equip-item"><span class="eq-icon">🌀</span> Dryer · Secadora</div>
+      <div class="equip-item"><span class="eq-icon">☕</span> Coffee/tea capsules · Cápsulas café/té</div>
+      <div class="equip-item"><span class="eq-icon">🧊</span> Large fridge · Nevera</div>
+      <div class="equip-item"><span class="eq-icon">🔥</span> Cooktop · Vitrocerámica</div>
+      <div class="equip-item"><span class="eq-icon">📡</span> Microwave · Microondas</div>
+      <div class="equip-item"><span class="eq-icon">💨</span> Hair dryer · Secador de pelo</div>
+      <div class="equip-item"><span class="eq-icon">💧</span> Water in fridge · Agua en la nevera</div>
+      <div class="equip-item"><span class="eq-icon">📺</span> Smart TV Samsung</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- HOUSE RULES -->
+  <div class="section">
+    <div class="section-title">📜 House Rules · Normas</div>
+    <div class="rules-grid">
+      <div class="rule-item">
+        <span class="rule-icon">🚭</span>
+        <div class="rule-text">
+          <span>No smoking indoors</span>
+          <span class="rule-es">No fumar dentro</span>
+        </div>
+      </div>
+      <div class="rule-item">
+        <span class="rule-icon">🎉</span>
+        <div class="rule-text">
+          <span>No parties</span>
+          <span class="rule-es">No fiestas</span>
+        </div>
+      </div>
+      <div class="rule-item">
+        <span class="rule-icon">🔇</span>
+        <div class="rule-text">
+          <span>Quiet hours: 9 PM – 8 AM</span>
+          <span class="rule-es">Silencio: 21:00 – 08:00</span>
+        </div>
+      </div>
+      <div class="rule-item">
+        <span class="rule-icon">🐾</span>
+        <div class="rule-text">
+          <span>No pets</span>
+          <span class="rule-es">No mascotas</span>
+        </div>
+      </div>
+      <div class="rule-item">
+        <span class="rule-icon">🚪</span>
+        <div class="rule-text">
+          <span>Check-in: from 2 PM</span>
+          <span class="rule-es">Check-in: desde las 14:00</span>
+        </div>
+      </div>
+      <div class="rule-item">
+        <span class="rule-icon">🧳</span>
+        <div class="rule-text">
+          <span>Check-out: before 11 AM</span>
+          <span class="rule-es">Check-out: antes de las 11:00</span>
+        </div>
+      </div>
+      <div class="rule-item">
+        <span class="rule-icon">🗑️</span>
+        <div class="rule-text">
+          <span>Trash bins: under sink. Public bins: across the street.</span>
+          <span class="rule-es">Cubos: bajo el fregadero. Contenedores: cruzando la calle.</span>
+        </div>
+      </div>
+      <div class="rule-item">
+        <span class="rule-icon">💡</span>
+        <div class="rule-text">
+          <span>When leaving: "Alexa, I'm leaving"</span>
+          <span class="rule-es">Al salir: "Alexa, me voy"</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip-box" style="margin-top:3mm; text-align:center; font-size:11px; border-left:none;">
+    <strong>🏡 Enjoy your stay! · ¡Disfruta tu estancia! 🌴</strong>
+  </div>
+
+  <!-- GUEST REGISTRATION + WIFI -->
+  <div class="qr-section" style="justify-content:space-between;">
+    <div style="display:flex; align-items:center; gap:3mm;">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://u.partee.es/27404434/Y4fMSRrusXq09nL" style="width:55px; height:55px; border-radius:4px;" />
+      <div style="font-size:9.5px;">
+        <strong style="color:#1a1a2e;">📋 Guest Registration</strong><br>
+        <span>If you haven't already, scan to register. <strong style="color:#b5451b;">Required by law.</strong></span><br>
+        <span style="color:#8a8578; font-style:italic;">Si no lo has hecho, escanea para registrarte. <strong style="color:#b5451b;">Obligatorio.</strong></span>
+      </div>
+    </div>
+    <div style="display:flex; align-items:center; gap:3mm; border-left:1px solid #e8e4dc; padding-left:3mm;">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=55x55&data=WIFI:T:WPA;S:PILAMA-5G;P:pilama1999;;" style="width:55px; height:55px; border-radius:4px;" />
+      <div style="font-size:9.5px;">
+        <strong style="color:#1a1a2e;">📶 Wifi</strong><br>
+        <span><strong>PILAMA-5G</strong></span><br>
+        <span style="color:#8a8578;">Pass: pilama1999</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
