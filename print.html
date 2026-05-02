@@ -8,18 +8,18 @@
   @page { size: A4; margin: 8mm; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: 'Inter', system-ui, sans-serif; font-size: 15px; line-height: 1.38; color: #2c2c2c; background: white; }
-  .page { width: 210mm; padding: 8mm 10mm; position: relative; display: flex; flex-direction: column; background: white; background-image: radial-gradient(circle at 0% 0%, rgba(201,169,110,0.03) 0%, transparent 50%), radial-gradient(circle at 100% 100%, rgba(201,169,110,0.03) 0%, transparent 50%); }
+  .page { width: 210mm; padding: 8mm 12mm; position: relative; display: flex; flex-direction: column; background: white; background-image: radial-gradient(circle at 0% 0%, rgba(201,169,110,0.03) 0%, transparent 50%), radial-gradient(circle at 100% 100%, rgba(201,169,110,0.03) 0%, transparent 50%); }
   .header { text-align: center; margin-bottom: 3mm; padding: 3mm 0; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); border-radius: 8px; position: relative; overflow: hidden; }
   .header::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(201,169,110,0.03) 20px, rgba(201,169,110,0.03) 21px); }
   .header h1 { font-family: 'Playfair Display', serif; font-size: 22px; color: #c9a96e; letter-spacing: 2px; position: relative; }
   .header .subtitle { font-size: 11px; color: rgba(255,255,255,0.7); margin-top: 2px; letter-spacing: 0.5px; position: relative; }
-  .section { margin-bottom: 4mm; page-break-inside: avoid; }
+  .section { margin-bottom: 3.5mm; page-break-inside: avoid; }
   .section-title { font-size: 16px; font-weight: 600; color: #1a1a2e; border-left: 3px solid #c9a96e; padding-left: 8px; margin-bottom: 2.5mm; display: flex; align-items: center; gap: 5px; }
   .cmd-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5mm 3mm; }
   .cmd-grid.col3 { grid-template-columns: 1fr 1fr auto; }
-  .cmd-item { background: #fafaf8; border-radius: 6px; padding: 3px 8px; border: 1px solid #e8e4dc; }
-  .cmd-item .en { font-weight: 600; color: #1a1a2e; font-size: 13px; }
-  .cmd-item .es { color: #8a8578; font-style: italic; font-size: 11px; }
+  .cmd-item { background: #fafaf8; border-radius: 6px; padding: 4px 9px; border: 1px solid #e8e4dc; }
+  .cmd-item .en { font-weight: 600; color: #1a1a2e; font-size: 13.5px; }
+  .cmd-item .es { color: #8a8578; font-style: italic; font-size: 11.5px; }
   .cmd-item-led { background: linear-gradient(135deg, #fdf8f0, #f9f3e8); border-radius: 6px; padding: 3px 8px; border: 1px solid #e8dcc8; grid-column: span 2; font-size: 10px; color: #8b6914; }
   .routine-table { width: 100%; border-collapse: collapse; font-size: 13px; }
   .routine-table th { background: linear-gradient(135deg, #1a1a2e, #16213e); color: #c9a96e; padding: 5px 8px; text-align: left; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.8px; font-weight: 500; }
@@ -28,12 +28,12 @@
   .routine-table .trigger { font-weight: 600; color: #1a1a2e; font-size: 12px; }
   .routine-table .trigger-alt { color: #8a8578; font-size: 10.5px; }
   .routine-table .action { font-size: 11.5px; color: #4a4a4a; }
-  .tip-box { background: linear-gradient(135deg, #fdf8f0 0%, #f9f3e8 100%); border: 1px solid #e8dcc8; border-left: 3px solid #c9a96e; border-radius: 6px; padding: 5px 9px; margin-top: 2mm; font-size: 12px; }
+  .tip-box { background: linear-gradient(135deg, #fdf8f0 0%, #f9f3e8 100%); border: 1px solid #e8dcc8; border-left: 3px solid #c9a96e; border-radius: 6px; padding: 6px 10px; margin-top: 2.5mm; font-size: 12.5px; }
   .tip-box strong { color: #8b6914; }
-  .manual-box { background: #f8f9fa; border: 1px solid #e8e4dc; border-radius: 6px; padding: 4px 9px; margin-top: 2mm; }
-  .manual-box p { font-size: 13px; color: #333; margin-bottom: 2px; }
-  .manual-box .es-note { font-size: 11.5px; color: #8a8578; font-style: italic; }
-  .subsection { margin-top: 3mm; margin-bottom: 2.5mm; }
+  .manual-box { background: #f8f9fa; border: 1px solid #e8e4dc; border-radius: 6px; padding: 6px 10px; margin-top: 2.5mm; }
+  .manual-box p { font-size: 13.5px; color: #333; margin-bottom: 2px; }
+  .manual-box .es-note { font-size: 12px; color: #8a8578; font-style: italic; }
+  .subsection { margin-top: 2.5mm; margin-bottom: 2mm; }
   .subsection-title { font-size: 13.5px; font-weight: 600; color: #4a4a4a; margin-bottom: 2mm; padding-left: 4px; border-left: 2px solid #c9a96e; }
   hr.divider { border: none; border-top: 1px solid #e8e4dc; margin: 3mm 0; }
   .rules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2mm 3mm; }
