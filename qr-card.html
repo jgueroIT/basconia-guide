@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>QR Cards — Basconia Smart Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  @page { size: A4; margin: 5mm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 13px;
+    color: #2c2c2c;
+    background: white;
+  }
+  .card {
+    width: 210mm;
+    max-height: 148mm;
+    padding: 8mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 6mm;
+    background: white;
+    background-image:
+      radial-gradient(circle at 0% 0%, rgba(201,169,110,0.03) 0%, transparent 50%),
+      radial-gradient(circle at 100% 100%, rgba(201,169,110,0.03) 0%, transparent 50%);
+  }
+  .title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: #c9a96e;
+    letter-spacing: 1.5px;
+    text-align: center;
+  }
+  /* Row 1: Registration (big) */
+  .row-main {
+    display: flex;
+    align-items: center;
+    gap: 5mm;
+    padding: 5mm 8mm;
+    background: #fafaf8;
+    border: 2px solid #c9a96e;
+    border-radius: 10px;
+    width: 100%;
+  }
+  .row-main img { width: 80px; height: 80px; border-radius: 6px; }
+  .row-main .text { flex: 1; }
+  .row-main .text h2 { font-size: 16px; color: #1a1a2e; margin-bottom: 3px; }
+  .row-main .text p { font-size: 13px; color: #4a4a4a; }
+  .row-main .text .required { color: #b5451b; font-weight: 700; font-size: 14px; }
+  .row-main .text .es { color: #8a8578; font-style: italic; font-size: 12px; }
+
+  /* Row 2: Wifi + Guide */
+  .row-secondary {
+    display: flex;
+    gap: 5mm;
+    width: 100%;
+  }
+  .qr-block {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 4mm;
+    padding: 4mm 6mm;
+    background: #fafaf8;
+    border: 1.5px solid #e8e4dc;
+    border-radius: 8px;
+  }
+  .qr-block img { width: 60px; height: 60px; border-radius: 5px; }
+  .qr-block .text h3 { font-size: 14px; color: #1a1a2e; margin-bottom: 2px; }
+  .qr-block .text p { font-size: 12px; color: #4a4a4a; }
+  .qr-block .text .es { color: #8a8578; font-style: italic; font-size: 11px; }
+  .qr-block .text .pass { font-family: monospace; font-size: 13px; font-weight: 600; color: #1a1a2e; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="title">🏠 Basconia Smart Studio</div>
+
+  <!-- REGISTRATION (main, big) -->
+  <div class="row-main">
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://u.partee.es/27404434/Y4fMSRrusXq09nL" />
+    <div class="text">
+      <h2>📋 Guest Registration</h2>
+      <p>Scan to complete your check-in registration.</p>
+      <p class="required">⚠️ Required by Spanish law.</p>
+      <p class="es">Escanea para completar tu registro de entrada. Obligatorio por ley.</p>
+    </div>
+  </div>
+
+  <!-- WIFI + GUIDE (secondary row) -->
+  <div class="row-secondary">
+    <div class="qr-block">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=WIFI:T:WPA;S:PILAMA-5G;P:pilama1999;;" />
+      <div class="text">
+        <h3>📶 Wifi</h3>
+        <p><strong>PILAMA-5G</strong></p>
+        <p class="pass">pilama1999</p>
+        <p class="es">Escanea para conectarte</p>
+      </div>
+    </div>
+    <div class="qr-block">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://jgueroit.github.io/basconia-guide/" />
+      <div class="text">
+        <h3>📱 Smart Home Guide</h3>
+        <p>Full guide online</p>
+        <p class="es">Guía domótica completa</p>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
